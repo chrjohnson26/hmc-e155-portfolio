@@ -13,3 +13,7 @@ about:
 ---
 
 Christian Johnson is in his final year of undergrad at [Harvey Mudd](https://hms.harvard.edu) studying Computer Science and Mathematics. This past summer Christian worked at Walmart, where he integrated AI into existing workflows by building MCP servers. Some of his favorite classes so far include Network Science, Algorithms, and Machine Learning.
+
+---
+
+Test
