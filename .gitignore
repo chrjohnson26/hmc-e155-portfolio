@@ -1,0 +1,7 @@
+# macOS auto generated files
+.DS_Store
+
+# rendered files
+/.quarto
+/_site
+Thumbs.db
