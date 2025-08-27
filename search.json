@@ -4,7 +4,7 @@
     "href": "blog.html",
     "title": "E155 Blog",
     "section": "",
-    "text": "Hello Quarto\n\n\nWelcome to my Quarto portfolio\n\n\n\n\n\nAug 26, 2025\n\n\nChristian Johnson\n\n\n\n\n\nNo matching items"
+    "text": "Hello e155!\n\n\nWelcome to my MicroPs blog!\n\n\n\n\n\nAug 26, 2025\n\n\nChristian Johnson\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
@@ -12,5 +12,61 @@
     "title": "E155 Portfolio",
     "section": "",
     "text": "Christian Johnson is in his final year of undergrad at Harvey Mudd studying Computer Science and Mathematics. This past summer Christian worked at Walmart, where he integrated AI into existing workflows by building MCP servers. Some of his favorite classes so far include Network Science, Algorithms, and Machine Learning."
+  },
+  {
+    "objectID": "posts/first-post.html",
+    "href": "posts/first-post.html",
+    "title": "Hello e155",
+    "section": "",
+    "text": "This is the first week of the Fall 2025 semester. I’ve just finished configuring the MicroPs quarto page. Here are a couple goals I have for myself this semester:\n\nGet better with hands on skills like soldering and making clean circuits\nBecome confident with working with new hardware\nProficency in reading data sheets and other documentation"
+  },
+  {
+    "objectID": "labs.html#lab-2---multiplexed-7-segment-display",
+    "href": "labs.html#lab-2---multiplexed-7-segment-display",
+    "title": "E155 Labs",
+    "section": "Lab 2 - Multiplexed 7-Segment Display",
+    "text": "Lab 2 - Multiplexed 7-Segment Display"
+  },
+  {
+    "objectID": "labs.html#lab-3---keypad-scanner",
+    "href": "labs.html#lab-3---keypad-scanner",
+    "title": "E155 Labs",
+    "section": "Lab 3 - Keypad Scanner",
+    "text": "Lab 3 - Keypad Scanner"
+  },
+  {
+    "objectID": "labs.html#lab-4---digital-audio",
+    "href": "labs.html#lab-4---digital-audio",
+    "title": "E155 Labs",
+    "section": "Lab 4 - Digital Audio",
+    "text": "Lab 4 - Digital Audio"
+  },
+  {
+    "objectID": "labs.html#lab-5---interrupts",
+    "href": "labs.html#lab-5---interrupts",
+    "title": "E155 Labs",
+    "section": "Lab 5 - Interrupts",
+    "text": "Lab 5 - Interrupts"
+  },
+  {
+    "objectID": "labs.html#lab-6---the-internet-of-things-and-serial-peripheral-interface",
+    "href": "labs.html#lab-6---the-internet-of-things-and-serial-peripheral-interface",
+    "title": "E155 Labs",
+    "section": "Lab 6 - The Internet of Things and Serial Peripheral Interface",
+    "text": "Lab 6 - The Internet of Things and Serial Peripheral Interface"
+  },
+  {
+    "objectID": "labs.html#lab-7---the-advanced-encryption-standard-aes",
+    "href": "labs.html#lab-7---the-advanced-encryption-standard-aes",
+    "title": "E155 Labs",
+    "section": "Lab 7 - The Advanced Encryption Standard (AES)",
+    "text": "Lab 7 - The Advanced Encryption Standard (AES)"
+  },
+  {
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "E155 Resources",
+    "section": "",
+    "text": "The e155 website."
   }
 ]
