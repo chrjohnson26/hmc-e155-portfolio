@@ -1,6 +1,6 @@
 ---
-title: "Hello Quarto"
-description: "Welcome to my Quarto portfolio"
+title: "Hello e155"
+description: "Welcome to my MicroPs blog!"
 author: "Christian Johnson"
 date: "8/26/25"
 categories:
@@ -8,3 +8,9 @@ categories:
   - labreport
 draft: false
 ---
+
+This is the first week of the Fall 2025 semester. I've just finished configuring the MicroPs quarto page. Here are a couple goals I have for myself this semester:
+
+* Get better with hands on skills like soldering and making clean circuits
+* Become confident with working with new hardware
+* Proficency in reading data sheets and other documentation
