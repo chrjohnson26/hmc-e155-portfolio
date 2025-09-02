@@ -18,7 +18,7 @@ The source code for my project can be found at this [GitHub repository](https://
 
 #### Block Diagram
 
-![Block Diagram for Verilog Design](labs/lab_1/images/lab1_CJ.drawio.png)
+![Block Diagram for Verilog Design](labs/lab_1/images/lab1_CJ.drawio-3.png)
 
 The block diagram illustrates the overall architecture of the design, including the connections between the FPGA, 7-segment display, and LEDs. The top-level module lab1_CJ is responsible for instantiating and connecting all the sub-modules. The submodules (led_controller and segment) include the logic for controlling the LEDs and the 7-segment display, respectively.
 
