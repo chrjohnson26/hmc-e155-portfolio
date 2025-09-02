@@ -279,6 +279,7 @@ I = \frac{V}{R} = \frac{3.3V - 2.0V}{162 \ohm} \approx 8.13mA
 </section>
 <section id="ai-prototype-summary" class="level3">
 <h3 class="anchored" data-anchor-id="ai-prototype-summary">AI Prototype Summary</h3>
+<p>The first AI Prototype query I made was to Google Gemini 2.5 Pro. It generated a single module which implements a simple LED blinking functionality using a high-speed oscillator. However, when synthesizing I got an error that the module OSCH was unknown. After asking GPT-4.1 to debug this it gave me several suggestion on how to resolve the error in synthesis.</p>
 <!-- ![Google Gemini 2.5 Pro's Response](labs/lab_1/images/ai.png) -->
 <p><img src="labs/lab_1/images/ai.png" alt="drawing" width="500"></p>
 <p>Here is the System Verilog file Gemini generated:</p>
