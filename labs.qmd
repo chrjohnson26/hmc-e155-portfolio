@@ -3,6 +3,123 @@ title: "E155 Labs"
 ---
 
 ## Lab 1 - Board Assembly and Testing
+
+### Introduction
+
+In this lab I implemented a design on the FPGA board to demonstrate the functionality of the on-board high-speed oscillator, LEDs, and the 7-segment display. The high speed oscillator was configured and divided down using a counter to achieve a blinking frequency of ~2.4 Hz. Combinational logic was used to control the 7-segment display and other LEDs based on the counter output.
+
+### Design and Testing Methodology
+
+The design was implemented using Verilog and tested on the FPGA board. The high-speed oscillator was configured to drive the blinking LED. Combinational logic was used to control the 7-segment display and other LEDs based on the provided truth tables. The design was tested by observing the oscilloscope trace of the blinking LED and checking all input combinations for the 7-segment display output and other LEDs.
+
+### Technical Documentation
+
+The source code for my project can be found at this [GitHub repository](https://github.com/chrjohnson26/e155).
+
+#### Block Diagram
+
+![Block Diagram for Verilog Design](labs/lab_1/images/lab1_CJ.drawio.png)
+
+The block diagram illustrates the overall architecture of the design, including the connections between the FPGA, 7-segment display, and LEDs. The top-level module lab1_CJ is responsible for instantiating and connecting all the sub-modules. The submodules (led_controller and segment) include the logic for controlling the LEDs and the 7-segment display, respectively.
+
+#### Schematic
+
+![Physical Schematic of Circuit](labs/lab_1/images/schematic.png)
+
+The schematic provides a detailed view of the physical connections between the FPGA, 7-segment display, and LEDs. Each switch has a 100k$\ohm$ pull-up resistor to ensure a defined logic level when the switch is open. The 7-segment display is connected to the FPGA through 162$\ohm$ current-limiting resistors to ensure current draw within the recommended range. The surface mount LEDs are connected in series with 1k$\ohm$ resistors to limit the current to a safe level.
+
+According to the data sheet for the Segment Display, the forward voltage is 2.0V. According to the lab manual the ideal current range is between 5-20mA. This means that the 162$\ohm$ resistors must ensure that the current through the display remains within this range. Given that the 3.3V supply voltage is used, we can calculate the current through the display as follows:
+
+$$
+I = \frac{V}{R} = \frac{3.3V - 2.0V}{162 \ohm} \approx 8.13mA
+$$
+
+### Results and Discussion
+
+This lab meets all intended proficiency specifications. The design was successfully implemented and tested on the FPGA board, demonstrating the functionality of the high-speed oscillator, LEDs, and 7-segment display. The oscilloscope trace confirmed the expected blinking frequency of ~2.4 Hz for the LED, and all input combinations for the 7-segment display were verified against the truth tables. However, the lab does not meet the following excellence specifications:
+
+* ModelSim simulation (either manually force or automatic testbench) to demonstrate that the design is working properly.
+* Testbenches written for each individual module to demonstrate proper operation
+* Testbench output included in the report
+
+Given more time I would complete the test bench I began writing then use ModelSim to simulate the design and verify its functionality. 
+
+### Conclusion
+
+The design successfully demonstrated the functionality of the high-speed oscillator, LEDs, and 7-segment display on the FPGA board. The implementation met all proficiency specifications, and the testing methodology verified the design against the provided requirements by checking all possible input combinations. Unfortunately, I was not able to complete the testbench but intend on doing so in the future. I spent roughly 27 hours on this lab.
+
+### AI Prototype Summary
+
+<!-- ![Google Gemini 2.5 Pro's Response](labs/lab_1/images/ai.png) -->
+
+<img src="labs/lab_1/images/ai.png" alt="drawing" width="500"/>
+
+Here is the System Verilog file Gemini generated:
+
+```verilog
+/**
+ * @brief Blinks an LED at 2 Hz using the internal 48 MHz oscillator.
+ * @details This module is designed for a Lattice iCE40 UP5K FPGA.
+ *          It instantiates the internal high-speed oscillator (OSCH) to generate a
+ *          48 MHz clock. A counter then divides this clock to toggle an LED
+ *          output at a frequency of 2 Hz (0.25s on, 0.25s off).
+ *
+ * @param CLK_FREQ The frequency of the internal oscillator in Hz.
+ * @param BLINK_FREQ The desired blink frequency of the LED in Hz.
+ */
+module led_blinker #(
+    parameter CLK_FREQ   = 48_000_000, // 48 MHz clock frequency
+    parameter BLINK_FREQ = 2           // 2 Hz blink frequency
+) (
+    output logic led_o // LED output
+);
+
+    // The division factor needed to get one toggle every half-period.
+    // (CLK_FREQ / BLINK_FREQ) gives the counts for a full cycle (on and off).
+    // We want to toggle at half the cycle period.
+    localparam HALF_PERIOD_COUNTS = CLK_FREQ / (BLINK_FREQ * 2);
+
+    // Calculate the number of bits required for the counter.
+    // $clog2 calculates the ceiling of log base 2, which gives the bit-width.
+    localparam COUNTER_WIDTH = $clog2(HALF_PERIOD_COUNTS);
+
+    // Internal high-frequency clock signal
+    logic hf_clk;
+
+    // Counter to divide the clock frequency
+    logic [COUNTER_WIDTH-1:0] counter;
+
+    // Instantiate the Lattice iCE40 UltraPlus internal high-speed oscillator.
+    // This generates the main clock for our logic without needing an external crystal.
+    OSCH #(
+        .NOM_FREQ("48.00") // Specify nominal frequency in MHz. Other options: "12.00", "24.00", "36.00"
+    ) u_osc (
+        .STDBY(1'b0),      // Oscillator is not in standby
+        .HFOSCEN(1'b1),    // High Frequency Oscillator is enabled
+        .CHIPCLKEN(1'b1),  // Clock enable for the CHIPCLK-pin
+        .HFOSCOUT(hf_clk)  // High Frequency Oscillator output
+    );
+
+    // Synchronous logic for the counter and LED toggle.
+    // This block is sensitive to the rising edge of the high-frequency clock.
+    always_ff @(posedge hf_clk) begin
+        if (counter == HALF_PERIOD_COUNTS - 1) begin
+            counter <= '0;        // Reset the counter
+            led_o   <= ~led_o;    // Toggle the LED state
+        end else begin
+            counter <= counter + 1; // Increment the counter
+        end
+    end
+
+    // Set the initial state of the LED and counter.
+    initial begin
+        led_o   = 1'b0;
+        counter = '0;
+    end
+
+endmodule
+```
+
 ## Lab 2 - Multiplexed 7-Segment Display
 ## Lab 3 - Keypad Scanner
 ## Lab 4 - Digital Audio
