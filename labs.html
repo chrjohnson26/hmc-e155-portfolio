@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -68,6 +103,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -121,7 +185,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#lab-1---board-assembly-and-testing" id="toc-lab-1---board-assembly-and-testing" class="nav-link active" data-scroll-target="#lab-1---board-assembly-and-testing">Lab 1 - Board Assembly and Testing</a></li>
+  <li><a href="#lab-1---board-assembly-and-testing" id="toc-lab-1---board-assembly-and-testing" class="nav-link active" data-scroll-target="#lab-1---board-assembly-and-testing">Lab 1 - Board Assembly and Testing</a>
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#design-and-testing-methodology" id="toc-design-and-testing-methodology" class="nav-link" data-scroll-target="#design-and-testing-methodology">Design and Testing Methodology</a></li>
+  <li><a href="#technical-documentation" id="toc-technical-documentation" class="nav-link" data-scroll-target="#technical-documentation">Technical Documentation</a></li>
+  <li><a href="#results-and-discussion" id="toc-results-and-discussion" class="nav-link" data-scroll-target="#results-and-discussion">Results and Discussion</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#ai-prototype-summary" id="toc-ai-prototype-summary" class="nav-link" data-scroll-target="#ai-prototype-summary">AI Prototype Summary</a></li>
+  </ul></li>
   <li><a href="#lab-2---multiplexed-7-segment-display" id="toc-lab-2---multiplexed-7-segment-display" class="nav-link" data-scroll-target="#lab-2---multiplexed-7-segment-display">Lab 2 - Multiplexed 7-Segment Display</a></li>
   <li><a href="#lab-3---keypad-scanner" id="toc-lab-3---keypad-scanner" class="nav-link" data-scroll-target="#lab-3---keypad-scanner">Lab 3 - Keypad Scanner</a></li>
   <li><a href="#lab-4---digital-audio" id="toc-lab-4---digital-audio" class="nav-link" data-scroll-target="#lab-4---digital-audio">Lab 4 - Digital Audio</a></li>
@@ -155,6 +227,123 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="lab-1---board-assembly-and-testing" class="level2">
 <h2 class="anchored" data-anchor-id="lab-1---board-assembly-and-testing">Lab 1 - Board Assembly and Testing</h2>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<p>In this lab I implemented a design on the FPGA board to demonstrate the functionality of the on-board high-speed oscillator, LEDs, and the 7-segment display. The high speed oscillator was configured and divided down using a counter to achieve a blinking frequency of ~2.4 Hz. Combinational logic was used to control the 7-segment display and other LEDs based on the counter output.</p>
+</section>
+<section id="design-and-testing-methodology" class="level3">
+<h3 class="anchored" data-anchor-id="design-and-testing-methodology">Design and Testing Methodology</h3>
+<p>The design was implemented using Verilog and tested on the FPGA board. The high-speed oscillator was configured to drive the blinking LED. Combinational logic was used to control the 7-segment display and other LEDs based on the provided truth tables. The design was tested by observing the oscilloscope trace of the blinking LED and checking all input combinations for the 7-segment display output and other LEDs.</p>
+</section>
+<section id="technical-documentation" class="level3">
+<h3 class="anchored" data-anchor-id="technical-documentation">Technical Documentation</h3>
+<p>The source code for my project can be found at this <a href="https://github.com/chrjohnson26/e155">GitHub repository</a>.</p>
+<section id="block-diagram" class="level4">
+<h4 class="anchored" data-anchor-id="block-diagram">Block Diagram</h4>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="labs/lab_1/images/lab1_CJ.drawio.png" class="img-fluid figure-img"></p>
+<figcaption>Block Diagram for Verilog Design</figcaption>
+</figure>
+</div>
+<p>The block diagram illustrates the overall architecture of the design, including the connections between the FPGA, 7-segment display, and LEDs. The top-level module lab1_CJ is responsible for instantiating and connecting all the sub-modules. The submodules (led_controller and segment) include the logic for controlling the LEDs and the 7-segment display, respectively.</p>
+</section>
+<section id="schematic" class="level4">
+<h4 class="anchored" data-anchor-id="schematic">Schematic</h4>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="labs/lab_1/images/schematic.png" class="img-fluid figure-img"></p>
+<figcaption>Physical Schematic of Circuit</figcaption>
+</figure>
+</div>
+<p>The schematic provides a detailed view of the physical connections between the FPGA, 7-segment display, and LEDs. Each switch has a 100k<span class="math inline">\(\ohm\)</span> pull-up resistor to ensure a defined logic level when the switch is open. The 7-segment display is connected to the FPGA through 162<span class="math inline">\(\ohm\)</span> current-limiting resistors to ensure current draw within the recommended range. The surface mount LEDs are connected in series with 1k<span class="math inline">\(\ohm\)</span> resistors to limit the current to a safe level.</p>
+<p>According to the data sheet for the Segment Display, the forward voltage is 2.0V. According to the lab manual the ideal current range is between 5-20mA. This means that the 162<span class="math inline">\(\ohm\)</span> resistors must ensure that the current through the display remains within this range. Given that the 3.3V supply voltage is used, we can calculate the current through the display as follows:</p>
+<p><span class="math display">\[
+I = \frac{V}{R} = \frac{3.3V - 2.0V}{162 \ohm} \approx 8.13mA
+\]</span></p>
+</section>
+</section>
+<section id="results-and-discussion" class="level3">
+<h3 class="anchored" data-anchor-id="results-and-discussion">Results and Discussion</h3>
+<p>This lab meets all intended proficiency specifications. The design was successfully implemented and tested on the FPGA board, demonstrating the functionality of the high-speed oscillator, LEDs, and 7-segment display. The oscilloscope trace confirmed the expected blinking frequency of ~2.4 Hz for the LED, and all input combinations for the 7-segment display were verified against the truth tables. However, the lab does not meet the following excellence specifications:</p>
+<ul>
+<li>ModelSim simulation (either manually force or automatic testbench) to demonstrate that the design is working properly.</li>
+<li>Testbenches written for each individual module to demonstrate proper operation</li>
+<li>Testbench output included in the report</li>
+</ul>
+<p>Given more time I would complete the test bench I began writing then use ModelSim to simulate the design and verify its functionality.</p>
+</section>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<p>The design successfully demonstrated the functionality of the high-speed oscillator, LEDs, and 7-segment display on the FPGA board. The implementation met all proficiency specifications, and the testing methodology verified the design against the provided requirements by checking all possible input combinations. Unfortunately, I was not able to complete the testbench but intend on doing so in the future. I spent roughly 27 hours on this lab.</p>
+</section>
+<section id="ai-prototype-summary" class="level3">
+<h3 class="anchored" data-anchor-id="ai-prototype-summary">AI Prototype Summary</h3>
+<!-- ![Google Gemini 2.5 Pro's Response](labs/lab_1/images/ai.png) -->
+<p><img src="labs/lab_1/images/ai.png" alt="drawing" width="500"></p>
+<p>Here is the System Verilog file Gemini generated:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode verilog code-with-copy"><code class="sourceCode verilog"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"> * @brief Blinks an LED at 2 Hz using the internal 48 MHz oscillator.</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"> * @details This module is designed for a Lattice iCE40 UP5K FPGA.</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"> *          It instantiates the internal high-speed oscillator (OSCH) to generate a</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"> *          48 MHz clock. A counter then divides this clock to toggle an LED</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"> *          output at a frequency of 2 Hz (0.25s on, 0.25s off).</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"> *</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"> * @param CLK_FREQ The frequency of the internal oscillator in Hz.</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"> * @param BLINK_FREQ The desired blink frequency of the LED in Hz.</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"> */</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">module</span> led_blinker #<span class="op">(</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">parameter</span> CLK_FREQ   <span class="op">=</span> <span class="dv">48</span>_000_000<span class="op">,</span> <span class="co">// 48 MHz clock frequency</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">parameter</span> BLINK_FREQ <span class="op">=</span> <span class="dv">2</span>           <span class="co">// 2 Hz blink frequency</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="op">)</span> <span class="op">(</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">output</span> logic led_o <span class="co">// LED output</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="op">);</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">// The division factor needed to get one toggle every half-period.</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">// (CLK_FREQ / BLINK_FREQ) gives the counts for a full cycle (on and off).</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">// We want to toggle at half the cycle period.</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="dt">localparam</span> HALF_PERIOD_COUNTS <span class="op">=</span> CLK_FREQ <span class="op">/</span> <span class="op">(</span>BLINK_FREQ * <span class="dv">2</span><span class="op">);</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Calculate the number of bits required for the counter.</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="co">// $clog2 calculates the ceiling of log base 2, which gives the bit-width.</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="dt">localparam</span> COUNTER_WIDTH <span class="op">=</span> <span class="dt">$clog2</span><span class="op">(</span>HALF_PERIOD_COUNTS<span class="op">);</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Internal high-frequency clock signal</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    logic hf_clk<span class="op">;</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Counter to divide the clock frequency</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    logic <span class="op">[</span>COUNTER_WIDTH<span class="dv">-1</span><span class="op">:</span><span class="dv">0</span><span class="op">]</span> counter<span class="op">;</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Instantiate the Lattice iCE40 UltraPlus internal high-speed oscillator.</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="co">// This generates the main clock for our logic without needing an external crystal.</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    OSCH #<span class="op">(</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>        .NOM_FREQ<span class="op">(</span><span class="st">"48.00"</span><span class="op">)</span> <span class="co">// Specify nominal frequency in MHz. Other options: "12.00", "24.00", "36.00"</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="op">)</span> u_osc <span class="op">(</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>        .STDBY<span class="op">(</span><span class="bn">1'b0</span><span class="op">),</span>      <span class="co">// Oscillator is not in standby</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>        .HFOSCEN<span class="op">(</span><span class="bn">1'b1</span><span class="op">),</span>    <span class="co">// High Frequency Oscillator is enabled</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>        .CHIPCLKEN<span class="op">(</span><span class="bn">1'b1</span><span class="op">),</span>  <span class="co">// Clock enable for the CHIPCLK-pin</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>        .HFOSCOUT<span class="op">(</span>hf_clk<span class="op">)</span>  <span class="co">// High Frequency Oscillator output</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="op">);</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Synchronous logic for the counter and LED toggle.</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="co">// This block is sensitive to the rising edge of the high-frequency clock.</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    always_ff <span class="op">@(</span><span class="kw">posedge</span> hf_clk<span class="op">)</span> <span class="kw">begin</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>        <span class="kw">if</span> <span class="op">(</span>counter <span class="op">==</span> HALF_PERIOD_COUNTS <span class="op">-</span> <span class="dv">1</span><span class="op">)</span> <span class="kw">begin</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>            counter <span class="op">&lt;=</span> '<span class="dv">0</span><span class="op">;</span>        <span class="co">// Reset the counter</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>            led_o   <span class="op">&lt;=</span> <span class="op">~</span>led_o<span class="op">;</span>    <span class="co">// Toggle the LED state</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span> <span class="kw">else</span> <span class="kw">begin</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>            counter <span class="op">&lt;=</span> counter <span class="op">+</span> <span class="dv">1</span><span class="op">;</span> <span class="co">// Increment the counter</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>        <span class="kw">end</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Set the initial state of the LED and counter.</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    <span class="kw">initial</span> <span class="kw">begin</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>        led_o   <span class="op">=</span> <span class="bn">1'b0</span><span class="op">;</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>        counter <span class="op">=</span> '<span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="kw">endmodule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 </section>
 <section id="lab-2---multiplexed-7-segment-display" class="level2">
 <h2 class="anchored" data-anchor-id="lab-2---multiplexed-7-segment-display">Lab 2 - Multiplexed 7-Segment Display</h2>
