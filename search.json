@@ -4,7 +4,7 @@
     "href": "blog.html",
     "title": "E155 Blog",
     "section": "",
-    "text": "Hello e155\n\n\nWelcome to my MicroPs blog!\n\n\n\n\n\nAug 26, 2025\n\n\nChristian Johnson\n\n\n\n\n\nNo matching items"
+    "text": "Lab One Reflection\n\n\nLife After MicroPs Lab 1\n\n\n\n\n\nSep 2, 2025\n\n\nChristian Johnson\n\n\n\n\n\n\n\n\n\n\n\n\nHello e155\n\n\nWelcome to my MicroPs blog!\n\n\n\n\n\nAug 26, 2025\n\n\nChristian Johnson\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
@@ -19,6 +19,13 @@
     "title": "Hello e155",
     "section": "",
     "text": "This is the first week of the Fall 2025 semester. I’ve just finished configuring the MicroPs quarto page. Here are a couple goals I have for myself this semester:\n\nGet better with hands on skills like soldering and making clean circuits\nBecome confident with working with new hardware\nProficency in reading data sheets and other documentation"
+  },
+  {
+    "objectID": "posts/week1.html",
+    "href": "posts/week1.html",
+    "title": "Lab One Reflection",
+    "section": "",
+    "text": "Hi,\nI just finished the proficiency specs for Lab 1. Overall, I feel good about the work I did, but there are definitely areas where I can improve. One of the biggest challenges I faced was getting the testbench working. I spent a lot of time debugging the Verilog code and my circuit itself, but in the end, I was able to get it working. If I was able to get my testbench working I would have been able to get all the specs on the lab and have an easier time with debugging.\nLooking ahead, I want to focus on improving my debugging skills and becoming more comfortable with the tools we are using in this class. I also want to make sure I am keeping up with the checkpoints / specs for the lab, as I know that staying organized and on time is really important for this class.\nFinally, I just wanted to note that I don’t think I’ve ever spent this much time on one assignment at Harvey Mudd and I’m gonna need to ramp up quickly or figure something out."
   },
   {
     "objectID": "labs.html",
