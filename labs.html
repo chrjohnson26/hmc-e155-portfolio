@@ -252,7 +252,7 @@ window.Quarto = {
 <h4 class="anchored" data-anchor-id="schematic">Schematic</h4>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="labs/lab_1/images/schematic.png" class="img-fluid figure-img"></p>
+<p><img src="labs/lab_1/images/schematic1.png" class="img-fluid figure-img"></p>
 <figcaption>Physical Schematic of Circuit</figcaption>
 </figure>
 </div>
@@ -265,13 +265,34 @@ I = \frac{V}{R} = \frac{3.3V - 2.0V}{162 \ohm} \approx 8.13mA
 </section>
 <section id="results-and-discussion" class="level3">
 <h3 class="anchored" data-anchor-id="results-and-discussion">Results and Discussion</h3>
-<p>This lab meets all intended proficiency specifications. The design was successfully implemented and tested on the FPGA board, demonstrating the functionality of the high-speed oscillator, LEDs, and 7-segment display. The oscilloscope trace confirmed the expected blinking frequency of ~2.4 Hz for the LED, and all input combinations for the 7-segment display were verified against the truth tables. However, the lab does not meet the following excellence specifications:</p>
-<ul>
-<li>ModelSim simulation (either manually force or automatic testbench) to demonstrate that the design is working properly.</li>
-<li>Testbenches written for each individual module to demonstrate proper operation</li>
-<li>Testbench output included in the report</li>
-</ul>
-<p>Given more time I would complete the test bench I began writing then use ModelSim to simulate the design and verify its functionality.</p>
+<p>This lab meets all intended proficiency and excellence specifications. The design was successfully implemented and tested on the FPGA board, demonstrating the functionality of the high-speed oscillator, LEDs, and 7-segment display. The oscilloscope trace confirmed the expected blinking frequency of ~2.4 Hz for the LED, and all input combinations for the 7-segment display were verified against the truth tables.</p>
+<p>Below the are screenshots from ModelSim showing the simulation results for the top module and each submodule. <!-- 9/3/25 --></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="labs/lab_1/images/lab1_CJ_testbench.png" class="img-fluid figure-img"></p>
+<figcaption>Screenshot of Questa ModelSim Simulation for lab1_CJ top module</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="labs/lab_1/images/segment_testbench.png" class="img-fluid figure-img"></p>
+<figcaption>Screenshot of Questa ModelSim Simulation for segment module</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="labs/lab_1/images/led_controller_testbench.png" class="img-fluid figure-img"></p>
+<figcaption>Screenshot of Questa ModelSim Simulation for led_controller module</figcaption>
+</figure>
+</div>
+<p>The three screenshots above show the simulation results for the top module (lab1_CJ) and each submodule (segment and led_controller). The waveforms indicate that the design behaves as expected, with the surface mount LEDs and the 7-segment display and other LEDs responding correctly to the input combinations.</p>
+<!-- However, the lab does not meet the following excellence specifications:
+
+* ModelSim simulation (either manually force or automatic testbench) to demonstrate that the design is working properly.
+* Testbenches written for each individual module to demonstrate proper operation
+* Testbench output included in the report
+
+Given more time I would complete the test bench I began writing then use ModelSim to simulate the design and verify its functionality.  -->
 </section>
 <section id="conclusion" class="level3">
 <h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
