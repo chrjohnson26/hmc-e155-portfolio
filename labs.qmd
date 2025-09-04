@@ -24,7 +24,7 @@ The block diagram illustrates the overall architecture of the design, including 
 
 #### Schematic
 
-![Physical Schematic of Circuit](labs/lab_1/images/schematic.png)
+![Physical Schematic of Circuit](labs/lab_1/images/schematic1.png)
 
 The schematic provides a detailed view of the physical connections between the FPGA, 7-segment display, and LEDs. Each switch has a 100k$\ohm$ pull-up resistor to ensure a defined logic level when the switch is open. The 7-segment display is connected to the FPGA through 162$\ohm$ current-limiting resistors to ensure current draw within the recommended range. The surface mount LEDs are connected in series with 1k$\ohm$ resistors to limit the current to a safe level.
 
@@ -36,13 +36,26 @@ $$
 
 ### Results and Discussion
 
-This lab meets all intended proficiency specifications. The design was successfully implemented and tested on the FPGA board, demonstrating the functionality of the high-speed oscillator, LEDs, and 7-segment display. The oscilloscope trace confirmed the expected blinking frequency of ~2.4 Hz for the LED, and all input combinations for the 7-segment display were verified against the truth tables. However, the lab does not meet the following excellence specifications:
+This lab meets all intended proficiency and excellence specifications. The design was successfully implemented and tested on the FPGA board, demonstrating the functionality of the high-speed oscillator, LEDs, and 7-segment display. The oscilloscope trace confirmed the expected blinking frequency of ~2.4 Hz for the LED, and all input combinations for the 7-segment display were verified against the truth tables. 
+
+Below the are screenshots from ModelSim showing the simulation results for the top module and each submodule.
+<!-- 9/3/25 -->
+
+![Screenshot of Questa ModelSim Simulation for lab1_CJ top module](labs/lab_1/images/lab1_CJ_testbench.png)
+
+![Screenshot of Questa ModelSim Simulation for segment module](labs/lab_1/images/segment_testbench.png)
+
+![Screenshot of Questa ModelSim Simulation for led_controller module](labs/lab_1/images/led_controller_testbench.png)
+
+The three screenshots above show the simulation results for the top module (lab1_CJ) and each submodule (segment and led_controller). The waveforms indicate that the design behaves as expected, with the surface mount LEDs and the 7-segment display and other LEDs responding correctly to the input combinations.
+
+<!-- However, the lab does not meet the following excellence specifications:
 
 * ModelSim simulation (either manually force or automatic testbench) to demonstrate that the design is working properly.
 * Testbenches written for each individual module to demonstrate proper operation
 * Testbench output included in the report
 
-Given more time I would complete the test bench I began writing then use ModelSim to simulate the design and verify its functionality. 
+Given more time I would complete the test bench I began writing then use ModelSim to simulate the design and verify its functionality.  -->
 
 ### Conclusion
 
