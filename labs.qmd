@@ -163,7 +163,7 @@ The schematic provides a detailed view of the physical connections between the s
 
 Base resistor calculation for PNP transistor:
 $$
-V = 4.3V - V_{\text{difference}}(4.3 - 0.7)V = 3.6V
+V = 4.3V - V_{\text{difference}} = (4.3 - 0.7)V = 3.6V
 $$
 
 $$
