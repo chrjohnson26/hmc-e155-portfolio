@@ -11,4 +11,4 @@ draft: false
 
 This past week I learned about time multiplexing and how to use it to drive multiple 7-segment displays with a single set of segment control lines. This technique is essential for reducing the number of I/O pins required on the FPGA, which is particularly important when working with limited resources. By rapidly switching between the displays, we can create the illusion that all displays are lit simultaneously.
 
-This week I made sure to get my test benches done right after finishing my modules. Since last week I struggled to get them working. However, this week it wasn't the testbenches that gave me trouble but rather getting the hardware to work. Even now my two segments aren't working correctly. This just reminds me that nothing in $\micro$
+This week I made sure to get my test benches done right after finishing my modules. Since last week I struggled to get them working. However, this week it wasn't the testbenches that gave me trouble but rather getting the hardware to work. Even now my two segments aren't working correctly. This just reminds me that nothing in microps is "easy".
