@@ -408,7 +408,7 @@ Given more time I would complete the test bench I began writing then use ModelSi
 </div>
 <p>The schematic provides a detailed view of the physical connections between the switches, FPGA, 7-segment display, and LEDs. Each switch has a 100k<span class="math inline">\(\ohm\)</span> pull-up resistor to ensure a defined logic level when the switch is open. The 7-segment display and Red LEDs are connected to the FPGA through 1k<span class="math inline">\(\ohm\)</span> current-limiting resistors to ensure current draw within the recommended range. The PNP transistors are used to switch the common anode of each digit on the 7-segment display and are connected to the FPGA through 1k<span class="math inline">\(\ohm\)</span> resistors to limit the base current.</p>
 <p>Base resistor calculation for PNP transistor: <span class="math display">\[
-V = 4.3V - V_{\text{difference}}(4.3 - 0.7)V = 3.6V
+V = 4.3V - V_{\text{difference}} = (4.3 - 0.7)V = 3.6V
 \]</span></p>
 <p><span class="math display">\[
 V = IR \implies R = \frac{V}{I} = \frac{3.6V}{0.008A} \approx  450\Omega
