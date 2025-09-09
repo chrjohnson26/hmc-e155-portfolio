@@ -402,13 +402,7 @@ Given more time I would complete the test bench I began writing then use ModelSi
 </section>
 <section id="schematic-1" class="level4">
 <h4 class="anchored" data-anchor-id="schematic-1">Schematic</h4>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="labs/lab_2/images/sch2.png" class="img-fluid figure-img"></p>
-<figcaption>Schematic of Physical Implementation</figcaption>
-</figure>
-</div>
-<p>The schematic provides a detailed view of the physical connections between the switches, FPGA, 7-segment display, and LEDs. Each switch has a 100k<span class="math inline">\(\ohm\)</span> pull-up resistor to ensure a defined logic level when the switch is open. The 7-segment display and Red LEDs are connected to the FPGA through 1k<span class="math inline">\(\ohm\)</span> current-limiting resistors to ensure current draw within the recommended range. The PNP transistors are used to switch the common anode of each digit on the 7-segment display and are connected to the FPGA through 1k<span class="math inline">\(\ohm\)</span> resistors to limit the base current.</p>
+<p><img src="labs/lab_2/images/sch3.png" class="img-fluid" alt="Schematic of Physical Implementation"> The schematic provides a detailed view of the physical connections between the switches, FPGA, 7-segment display, and LEDs. Each switch has a 100k<span class="math inline">\(\ohm\)</span> pull-up resistor to ensure a defined logic level when the switch is open. The 7-segment display and Red LEDs are connected to the FPGA through 1k<span class="math inline">\(\ohm\)</span> current-limiting resistors to ensure current draw within the recommended range. The PNP transistors are used to switch the common anode of each digit on the 7-segment display and are connected to the FPGA through 1k<span class="math inline">\(\ohm\)</span> resistors to limit the base current.</p>
 <p>Base resistor calculation for PNP transistor: <span class="math display">\[
 V = 4.3V - V_{\text{difference}} = (4.3 - 0.7)V = 3.6V
 \]</span></p>
