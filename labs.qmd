@@ -155,7 +155,7 @@ The source code for my project can be found at this [GitHub repository](https://
 
 #### Block Diagram
 
-![Block Diagram for Verilog Design](labs/lab_2/images/block_diagram.png)
+![Block Diagram for Verilog Design](labs/lab_2/images/block1.png)
 
 The block diagram illustrates the overall architecture of the System Verilog design. The top module (lab2_CJ) initializes the on board oscillator and instantiates the submodules. The submodules (two_input_led_adder, segment, encoder, and decoder) include the logic for controlling which switches are used, choosing which segments to light up, and generating the output for the LEDs.
 
