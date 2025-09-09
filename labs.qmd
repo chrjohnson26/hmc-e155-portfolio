@@ -161,8 +161,8 @@ The block diagram illustrates the overall architecture of the System Verilog des
 
 #### Schematic
 
-![Schematic of Physical Implementation](labs/lab_2/images/sch2.png)
 
+![Schematic of Physical Implementation](labs/lab_2/images/sch3.png)
 The schematic provides a detailed view of the physical connections between the switches, FPGA, 7-segment display, and LEDs. Each switch has a 100k$\ohm$ pull-up resistor to ensure a defined logic level when the switch is open. The 7-segment display and Red LEDs are connected to the FPGA through 1k$\ohm$ current-limiting resistors to ensure current draw within the recommended range. The PNP transistors are used to switch the common anode of each digit on the 7-segment display and are connected to the FPGA through 1k$\ohm$ resistors to limit the base current.
 
 Base resistor calculation for PNP transistor:
